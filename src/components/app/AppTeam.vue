@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <app-team-member v-for="(teamMember, index) in team"
             :key="'team' + index"
             :index="index"
@@ -75,5 +75,9 @@ export default {
         font-family: Monospace;
       }
 
-
+.wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 125px);
+        grid-gap: 10px;
+      }
 </style>
