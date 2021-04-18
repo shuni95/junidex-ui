@@ -23,17 +23,16 @@ export default {
     },
 
     created() {
-      console.log("app team created");
-    },
-
-    mounted() {
+        console.log("app team created")
         // Load team from API
         fetch(process.env.VUE_APP_REST_SERVER + "/api/team")
             .then(r => r.json())
             .then(data => {
                 this.team = data;
             })
+    },
 
+    mounted() {
         // Connect WS
         let socket = new WebSocket(process.env.VUE_APP_WS_SERVER + "/ws");
         console.log("Attempting Connection...");
@@ -53,35 +52,35 @@ export default {
 
         // Listen the messages
         socket.addEventListener('message', function (event) {
-          console.log('Message from server', event.data);
-          const dataDecoded = JSON.parse(event.data);
-          console.info(event.data)
-          if (dataDecoded['body']['team'] != null) {
-            const team = dataDecoded['body']['team'];
-            console.info(team)
-            for (var i = 0; i < 6; i++) {
-              if (team[i] == "") {
-                document.getElementById("pokemon"+i).src = "/static/img/blank.gif";
-              } else {
-                document.getElementById("pokemon"+i).src = "/static/img/"+team[i]+".gif"
-              }
+            console.log('Message from server', event.data);
+            const dataDecoded = JSON.parse(event.data);
+            console.info(event.data)
+            if (dataDecoded['body']['team'] != null) {
+                const team = dataDecoded['body']['team'];
+                console.info(team)
+                for (var i = 0; i < 6; i++) {
+                    if (team[i] == "") {
+                        document.getElementById("pokemon"+i).src = "/static/img/blank.gif";
+                    } else {
+                        document.getElementById("pokemon"+i).src = "/static/img/"+team[i]+".gif"
+                    }
+                }
             }
-          }
-        });
+        })
     }
 }
 </script>
 
 <style>
-    p {
-        color: rgb(68, 0, 255);
-        background-color: rgb(132, 132, 233);
-        font-family: Monospace;
-      }
+p {
+    color: rgb(68, 0, 255);
+    background-color: rgb(132, 132, 233);
+    font-family: Monospace;
+}
 
 .wrapper {
-        display: grid;
-        grid-template-columns: repeat(2, 125px);
-        grid-gap: 10px;
-      }
+    display: grid;
+    grid-template-columns: repeat(2, 125px);
+    grid-gap: 10px;
+}
 </style>
