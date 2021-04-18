@@ -1,17 +1,16 @@
 <template>
-  <div id="app">
-    <app-team />
+  <div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AppTeam from './components/app/AppTeam.vue'
 
 export default {
-  name: 'Main',
+  name: 'App',
 
-  components: {
-    AppTeam
+  created() {
+    console.log("app created");
   }
 }
 </script>

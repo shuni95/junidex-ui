@@ -22,6 +22,10 @@ export default {
         }
     },
 
+    created() {
+      console.log("app team created");
+    },
+
     mounted() {
         // Load team from API
         fetch(process.env.VUE_APP_REST_SERVER + "/api/team")
