@@ -3,7 +3,9 @@
         <app-team-member v-for="(teamMember, index) in team"
             :key="'team' + index"
             :index="index"
-            :name="teamMember"></app-team-member>
+            :name="teamMember.name"
+            :typeOne="teamMember.type1"
+            :typeTwo="teamMember.type2"></app-team-member>
     </div>
 </template>
 
@@ -27,9 +29,7 @@ export default {
         // Load team from API
         fetch(process.env.VUE_APP_REST_SERVER + "/api/team")
             .then(r => r.json())
-            .then(data => {
-                this.team = data;
-            })
+            .then(data => this.team = data)
     },
 
     mounted() {

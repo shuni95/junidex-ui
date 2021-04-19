@@ -37,15 +37,11 @@ export default {
         // Load team from API
         fetch(process.env.VUE_APP_REST_SERVER + "/api/teamIds")
             .then(r => r.json())
-            .then(data => {
-                this.team = data;
-            })
+            .then(data => this.team = data)
 
         fetch(process.env.VUE_APP_REST_SERVER + "/api/all")
             .then(r => r.json())
-            .then(data => {
-                this.pokemonAll = data;
-            })
+            .then(data => this.pokemonAll = data)
     },
 
     mounted() {
